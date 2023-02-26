@@ -31,3 +31,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { firstName, lastName, address1, address2, city, state, zipCode } = req.body;
       const client = await db.collection('clients').findOneAndUpdate(
         { user: new ObjectId(userId
+          res.status(200).json({ client });
+    } else {
+      // Handle other types of requests
+      res.status(405).json({ message: 'Method not allowed' });
+    }
